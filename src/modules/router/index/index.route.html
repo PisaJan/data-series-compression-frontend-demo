@@ -1,0 +1,59 @@
+<template>
+  <header>
+    <div class="uk-container">
+      <nav class="uk-navbar-transparent" data-uk-navbar style="height: 60px;">
+        <div class="uk-navbar-left">
+          <a
+            uk-icon="icon: refresh; ratio: 1.5"
+            click.delegate="refreshData()"
+          ></a>
+        </div>
+
+        <div class="uk-navbar-center">
+          <ul class="uk-navbar-nav">
+            <li>
+              <div class="uk-margin">
+                <div class="uk-margin-top">
+                  <select class="uk-select" value.bind="dataSet">
+                    <option
+                      repeat.for="[value, label] of dataSets"
+                      value="${value}"
+                      >${label}</option
+                    >
+                  </select>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <a
+            href="https://github.com/PisaJan/data-series-compression-frontend-demo"
+            uk-icon="icon: github; ratio: 2"
+          ></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="uk-section uk-section-secondary">
+    <div class="uk-container uk-container-small uk-text-center">
+      <div
+        class="uk-grid-column-small uk-grid-row-large uk-child-width-1-2@s uk-text-center"
+        uk-grid
+      >
+        <div>
+          <div class="uk-card uk-card-default uk-card-body">
+            <div id="${originalChart.id}"></div>
+            <p>points: ${originalChart.points}</p>
+          </div>
+        </div>
+        <div>
+          <div class="uk-card uk-card-default uk-card-body">
+            <div id="${compressedChart.id}"></div>
+            <p>points: ${compressedChart.points}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
