@@ -1,8 +1,8 @@
-# `data-series-compression-frontend-demo`
+# data-series-compression-frontend-demo
 
 This project serves as frontend demo usage of <https://github.com/PisaJan/data-series-compression>
 
-## Run dev app
+## Run application locally in development environment
 
 Run `au run`, then open `http://localhost:8080`
 
