@@ -11,7 +11,7 @@ import { EDataSet } from './../../data-set/data-set.enum';
 
 export class IndexRoute {
   private readonly compression: CompressionService = new CompressionService(
-    0.05
+    0.1
   );
   protected readonly originalChart: {
     id: string;
@@ -60,7 +60,7 @@ export class IndexRoute {
     );
     const compressedData: IDataPoint[] = this.compression.compressByRounds(
       this.selectedDataSet.points,
-      5
+      3
     );
     this.compressedChart.points = compressedData.length;
     this.compressedChart.instance = IndexRoute.renderChart(
@@ -80,7 +80,7 @@ export class IndexRoute {
     ]);
     const compressedData: IDataPoint[] = this.compression.compressByRounds(
       this.selectedDataSet.points,
-      5
+      3
     );
     this.compressedChart.points = compressedData.length;
     this.compressedChart.instance.updateSeries([
@@ -120,6 +120,7 @@ export class IndexRoute {
 
   public attached(): void {
     this.renderCharts();
+    this.updateCharts();
     this.loaded = true;
   }
 

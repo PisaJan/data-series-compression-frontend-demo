@@ -5,7 +5,7 @@ export class DataSet {
   private static minimum: number = 0;
   private static maximum: number = 1000;
   private static start: number = 1262300400000; // 1.1.2010
-  private static interval: number = 3600; // one hour
+  private static interval: number = 24 * 3600 * 1000; // one day
 
   public constructor(public readonly size: number) {
     for (let i = 0; i < size; i++) {
