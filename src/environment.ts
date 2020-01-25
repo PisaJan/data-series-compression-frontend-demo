@@ -1,6 +1,6 @@
 export default {
-  debug: true,
-  testing: true,
+  debug: false,
+  testing: false,
   dataSet: {
     small: {
       size: 50
