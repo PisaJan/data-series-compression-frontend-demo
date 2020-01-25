@@ -23,7 +23,8 @@ const outDir = path.resolve(__dirname, project.platform.output);
 const srcDir = path.resolve(__dirname, "src");
 const testDir = path.resolve(__dirname, "test", "unit");
 const nodeModulesDir = path.resolve(__dirname, "node_modules");
-const baseUrl = "/data-series-compression-frontend-demo/";
+const developmentBaseUrl = "/";
+const productionBaseUrl = "/data-series-compression-frontend-demo/";
 
 const cssRules = [{ loader: "css-loader" }];
 
@@ -50,7 +51,7 @@ module.exports = ({
   mode: production ? "production" : "development",
   output: {
     path: outDir,
-    publicPath: baseUrl,
+    publicPath: production ? productionBaseUrl : developmentBaseUrl,
     filename: production
       ? "[name].[chunkhash].bundle.js"
       : "[name].[hash].bundle.js",
@@ -212,7 +213,7 @@ module.exports = ({
         // available in index.ejs //
         title,
         server,
-        baseUrl
+        baseUrl: production ? productionBaseUrl: developmentBaseUrl,
       }
     }),
     // ref: https://webpack.js.org/plugins/mini-css-extract-plugin/
