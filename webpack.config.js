@@ -23,7 +23,7 @@ const outDir = path.resolve(__dirname, project.platform.output);
 const srcDir = path.resolve(__dirname, "src");
 const testDir = path.resolve(__dirname, "test", "unit");
 const nodeModulesDir = path.resolve(__dirname, "node_modules");
-const baseUrl = "/";
+const baseUrl = "/data-series-compression-frontend-demo/";
 
 const cssRules = [{ loader: "css-loader" }];
 
