@@ -51,7 +51,7 @@
     "webpack-bundle-analyzer": "^3.0.4"
   },
   "scripts": {
-    "build": "rm -rf docs && au build && mv dist docs && echo '---\npermalink: /index.html\n---' > docs/404.md ",
+    "build": "rm -rf docs && au build --env prod && mv dist docs && echo '---\npermalink: /index.html\n---' > docs/404.md ",
     "start": "au run"
   },
   "engines": {

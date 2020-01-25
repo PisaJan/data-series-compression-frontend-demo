@@ -1,0 +1,23 @@
+<template>
+  <require from="./options/options.element"></require>
+  <require from="./chart/original/original.element"></require>
+  <require from="./chart/compressed/compressed.element"></require>
+  <div class="uk-container uk-container-small uk-text-center">
+    <options></options>
+    <div
+      class="uk-grid-column-small uk-grid-row-large uk-child-width-1-2@s uk-text-center"
+      uk-grid
+    >
+      <div>
+        <div class="uk-card uk-card-default uk-card-body">
+          <original-chart></original-chart>
+        </div>
+      </div>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body">
+          <compressed-chart></compressed-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

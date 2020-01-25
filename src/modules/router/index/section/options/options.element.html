@@ -1,0 +1,48 @@
+<template>
+  <require
+    from="../../../../../common/converters/to-integer/to-integer.converter"
+  ></require>
+  <div
+    class="uk-grid-column-small uk-grid-row-large uk-child-width-1-5@s uk-text-center"
+    uk-grid
+  >
+    <div></div>
+    <div class="uk-margin">
+      <div class="uk-margin-top">
+        <select class="uk-select" value.bind="options.dataSet">
+          <option repeat.for="[value, label] of dataSets" value="${value}"
+            >${label}</option
+          >
+        </select>
+      </div>
+    </div>
+    <div class="uk-margin">
+      <div class="uk-margin-top">
+        <label class="uk-form-label uk-padding-small" for="rounds-input"
+          >Rounds</label
+        >
+        <input
+          id="rounds-input"
+          class="uk-input uk-form-width-xsmall"
+          type="text"
+          value.two-way="options.rounds | toInteger"
+        />
+      </div>
+    </div>
+    <div class="uk-margin">
+      <div class="uk-margin-top">
+        <label class="uk-form-label uk-padding-small" for="deviation-input"
+          >Deviation</label
+        >
+        <input
+          id="deviation-input"
+          class="uk-input uk-form-width-xsmall"
+          type="text"
+          value.two-way="options.deviation | toInteger"
+        />
+        %
+      </div>
+    </div>
+    <div></div>
+  </div>
+</template>
