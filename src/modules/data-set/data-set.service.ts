@@ -46,7 +46,7 @@ export class DataSetService {
         return this.medium;
       case EDataSet.LARGE:
         if (!this.medium) {
-          this.small = new DataSet(environment.dataSet.small.size);
+          this.large = new DataSet(environment.dataSet.small.size);
         }
         return this.large;
       default:
