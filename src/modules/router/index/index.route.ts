@@ -10,9 +10,7 @@ import { DataSet } from '../../data-set/data-set.model';
 import { EDataSet } from './../../data-set/data-set.enum';
 
 export class IndexRoute {
-  private readonly compression: CompressionService = new CompressionService(
-    0.1
-  );
+  private compression: CompressionService = new CompressionService(0.1);
   protected readonly originalChart: {
     id: string;
     label: string;
@@ -47,6 +45,10 @@ export class IndexRoute {
   protected largeDataSet: DataSet = new DataSet(environment.dataSet.large.size);
   @observable()
   protected dataSet: EDataSet = EDataSet.SMALL;
+  @observable()
+  protected rounds: string = "1";
+  @observable()
+  protected deviation: string = "10";
   protected selectedDataSet: DataSet = this.smallDataSet;
   private loaded: boolean = false;
 
@@ -60,7 +62,7 @@ export class IndexRoute {
     );
     const compressedData: IDataPoint[] = this.compression.compressByRounds(
       this.selectedDataSet.points,
-      3
+      parseInt(this.rounds, 10)
     );
     this.compressedChart.points = compressedData.length;
     this.compressedChart.instance = IndexRoute.renderChart(
@@ -69,6 +71,11 @@ export class IndexRoute {
       compressedData
     );
   }
+
+  private updateCompression(deviation: number) {
+    this.compression = new CompressionService(deviation);
+  }
+
   private updateCharts(): void {
     const originalData: IDataPoint[] = this.selectedDataSet.points;
     this.originalChart.points = originalData.length;
@@ -80,7 +87,7 @@ export class IndexRoute {
     ]);
     const compressedData: IDataPoint[] = this.compression.compressByRounds(
       this.selectedDataSet.points,
-      3
+      Number.parseInt(this.rounds, 10)
     );
     this.compressedChart.points = compressedData.length;
     this.compressedChart.instance.updateSeries([
@@ -89,6 +96,33 @@ export class IndexRoute {
         data: IndexRoute.getChartData(compressedData)
       }
     ]);
+  }
+
+  protected deviationChanged(): void {
+    if (!this.loaded) {
+      return;
+    }
+    const deviation: number = Number.parseInt(this.deviation, 10);
+    if (deviation < 0) {
+      setImmediate(() => {
+        this.deviation = "0";
+      });
+      return;
+    } else if (deviation > 100) {
+      setImmediate(() => {
+        this.deviation = "100";
+      });
+      return;
+    }
+    this.updateCompression(deviation / 100);
+    this.updateCharts();
+  }
+
+  protected roundsChanged(): void {
+    if (!this.loaded) {
+      return;
+    }
+    this.updateCharts();
   }
 
   protected dataSetChanged(): void {
